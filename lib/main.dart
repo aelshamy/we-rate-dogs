@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:we_rate_dogs/dog_list.dart';
 import 'package:we_rate_dogs/dog_model.dart';
+import 'package:we_rate_dogs/new_dog_form.dart';
 
 void main() => runApp(MyApp());
 
@@ -35,6 +36,18 @@ class _MyHomePageState extends State<MyHomePage> {
     Dog('Buddy', 'North Pole, Earth', 'Self problaimed human lover.'),
   ];
 
+  Future<Null> _showNewDogForm() async {
+    var newDog = await Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => AddDogFormPage(),
+      ),
+    );
+    //
+    if (newDog != null) {
+      dogs.add(newDog);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,17 +55,18 @@ class _MyHomePageState extends State<MyHomePage> {
         elevation: 1.0,
         title: Text(widget.title),
         backgroundColor: Colors.amberAccent,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.add),
+            onPressed: _showNewDogForm,
+          ),
+        ],
       ),
       body: Container(
-        // Add box decoration
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            // Where the linear gradient begins and ends
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,
-            // Add one stop for each color.
-            // Stops should increase
-            // from 0 to 1
             stops: [0.1, 0.5, 0.7, 0.9],
             colors: [
               // Colors are easy thanks to Flutter's

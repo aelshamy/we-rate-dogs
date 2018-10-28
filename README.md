@@ -1,6 +1,6 @@
 # We Rate Dogs
 
-A new Flutter project.
+A new Flutter project using [DOG CEO API](https://dog.ceo/) to get random dogs images
 
 ## Getting Started
 
