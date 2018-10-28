@@ -67,9 +67,7 @@ class _DogCardState extends State<DogCard> {
     var crossFade = new AnimatedCrossFade(
       firstChild: placeholder,
       secondChild: dogAvatar,
-      crossFadeState: renderUrl == null
-          ? CrossFadeState.showFirst
-          : CrossFadeState.showSecond,
+      crossFadeState: renderUrl == null ? CrossFadeState.showFirst : CrossFadeState.showSecond,
       duration: new Duration(milliseconds: 1000),
     );
 
@@ -91,10 +89,14 @@ class _DogCardState extends State<DogCard> {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: <Widget>[
-              Text(widget.dog.name,
-                  style: Theme.of(context).textTheme.headline),
-              Text(widget.dog.location,
-                  style: Theme.of(context).textTheme.subhead),
+              Text(
+                widget.dog.name,
+                style: Theme.of(context).textTheme.headline,
+              ),
+              Text(
+                widget.dog.location,
+                style: Theme.of(context).textTheme.subhead,
+              ),
               Row(
                 children: <Widget>[
                   Icon(

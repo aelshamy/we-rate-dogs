@@ -27,11 +27,9 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   var dogs = [
-    Dog('Ruby', 'Portland, OR, USA',
-        'Ruby is a very good girl. Yes: Fetch, loungin\'. No: Dogs who get on furniture.'),
+    Dog('Ruby', 'Portland, OR, USA', 'Ruby is a very good girl. Yes: Fetch, loungin\'. No: Dogs who get on furniture.'),
     Dog('Rex', 'Seattle, WA, USA', 'Best in Show 1999'),
-    Dog('Rod Stewart', 'Prague, CZ',
-        'Star good boy on international snooze team.'),
+    Dog('Rod Stewart', 'Prague, CZ', 'Star good boy on international snooze team.'),
     Dog('Herbert', 'Dallas, TX, USA', 'A Very Good Boy'),
     Dog('Buddy', 'North Pole, Earth', 'Self problaimed human lover.'),
   ];
@@ -54,7 +52,7 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         elevation: 1.0,
         title: Text(widget.title),
-        backgroundColor: Colors.amberAccent,
+        backgroundColor: Colors.amber,
         actions: [
           IconButton(
             icon: Icon(Icons.add),
