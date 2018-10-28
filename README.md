@@ -1,4 +1,4 @@
-# we_rate_dogs
+# We Rate Dogs
 
 A new Flutter project.
 
