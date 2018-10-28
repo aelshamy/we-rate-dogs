@@ -54,14 +54,10 @@ class _DogCardState extends State<DogCard> {
         gradient: new LinearGradient(
           begin: Alignment.topLeft,
           end: Alignment.bottomRight,
-          colors: [Colors.black54, Colors.black, Colors.blueGrey[600]],
+          colors: [Colors.amber[300], Colors.amber, Colors.amber[900]],
         ),
       ),
       alignment: Alignment.center,
-      child: new Text(
-        'DOGGO',
-        textAlign: TextAlign.center,
-      ),
     );
 
     var crossFade = new AnimatedCrossFade(

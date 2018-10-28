@@ -26,13 +26,17 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  var dogs = [
-    Dog('Ruby', 'Portland, OR, USA', 'Ruby is a very good girl. Yes: Fetch, loungin\'. No: Dogs who get on furniture.'),
-    Dog('Rex', 'Seattle, WA, USA', 'Best in Show 1999'),
-    Dog('Rod Stewart', 'Prague, CZ', 'Star good boy on international snooze team.'),
-    Dog('Herbert', 'Dallas, TX, USA', 'A Very Good Boy'),
-    Dog('Buddy', 'North Pole, Earth', 'Self problaimed human lover.'),
-  ];
+  Key refreshKey = GlobalKey<RefreshIndicatorState>();
+  var dogs = <Dog>[];
+  initState() {
+    super.initState();
+    dogs = [
+      Dog('Ruby', 'Portland, OR, USA', 'Ruby is a very good girl. Yes: Fetch, loungin\'. No: Dogs who get on furniture.'),
+      Dog('Rex', 'Seattle, WA, USA', 'Best in Show 1999'),
+      Dog('Rod Stewart', 'Prague, CZ', 'Star good boy on international snooze team.'),
+      Dog('Herbert', 'Dallas, TX, USA', 'A Very Good Boy'),
+    ];
+  }
 
   Future<Null> _showNewDogForm() async {
     var newDog = await Navigator.of(context).push(
@@ -44,6 +48,15 @@ class _MyHomePageState extends State<MyHomePage> {
     if (newDog != null) {
       dogs.add(newDog);
     }
+  }
+
+  Future refrshList() async {
+    await Future.delayed(Duration(seconds: 2));
+    setState(() {
+      dogs.add(
+        Dog('Buddy', 'North Pole, Earth', 'Self problaimed human lover.'),
+      );
+    });
   }
 
   @override
@@ -60,24 +73,28 @@ class _MyHomePageState extends State<MyHomePage> {
           ),
         ],
       ),
-      body: Container(
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topRight,
-            end: Alignment.bottomLeft,
-            stops: [0.1, 0.5, 0.7, 0.9],
-            colors: [
-              // Colors are easy thanks to Flutter's
-              // Colors class.
-              Colors.amber[800],
-              Colors.amber[700],
-              Colors.amber[600],
-              Colors.amber[400],
-            ],
+      body: RefreshIndicator(
+        key: refreshKey,
+        child: Container(
+          decoration: BoxDecoration(
+            gradient: LinearGradient(
+              begin: Alignment.topRight,
+              end: Alignment.bottomLeft,
+              stops: [0.1, 0.5, 0.7, 0.9],
+              colors: [
+                // Colors are easy thanks to Flutter's
+                // Colors class.
+                Colors.amber[800],
+                Colors.amber[700],
+                Colors.amber[600],
+                Colors.amber[400],
+              ],
+            ),
           ),
+          padding: EdgeInsets.all(15.0),
+          child: DogList(dogs),
         ),
-        padding: EdgeInsets.all(15.0),
-        child: DogList(dogs),
+        onRefresh: refrshList,
       ),
     );
   }
