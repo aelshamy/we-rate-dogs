@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
-import 'dart:io';
+import 'package:http/http.dart' as http;
 
 class Dog {
   final String name;
@@ -21,16 +21,10 @@ class Dog {
     }
 
     // This is how http calls are done in flutter:
-    HttpClient http = new HttpClient();
     try {
-      // Use darts Uri builder
-      var uri = new Uri.http('dog.ceo', '/api/breeds/image/random');
-      var request = await http.getUrl(uri);
-      var response = await request.close();
-      var responseBody = await response.transform(utf8.decoder).join();
-      var json = jsonDecode(responseBody);
-
-      var url = json['message'];
+      var response = await http.get("https://dog.ceo/api/breeds/image/random");
+      var data = json.decode(response.body);
+      var url = data['message'];
       imageUrl = url;
     } catch (exception) {
       print(exception);
