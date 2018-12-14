@@ -20,7 +20,6 @@ class Dog {
       return;
     }
 
-    // This is how http calls are done in flutter:
     try {
       var response = await http.get("https://dog.ceo/api/breeds/image/random");
       var data = json.decode(response.body);
